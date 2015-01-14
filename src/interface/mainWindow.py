@@ -19,7 +19,7 @@ uiFilePath = r'%s\ui\mainWindow.ui'%frameCheckerPath
 
 form, base = uic.loadUiType(uiFilePath)
 class Window(form, base):
-    def __init__(self, filePath):
+    def __init__(self):
         '''
         Constructor
         '''
@@ -158,7 +158,7 @@ class Window(form, base):
         '''
         Shows the file dialog to the user to select a file
         '''
-        fileName = QFileDialog.getOpenFileName(self, 'Select File', '', '')
+        fileName = QFileDialog.getOpenFileName(self, 'Select File', '', '', None, QFileDialog.DontUseNativeDialog)
         if fileName:
             self.filePathBox.setText(fileName)
             self.setSourcePath()

@@ -73,6 +73,9 @@
           </item>
           <item>
            <widget class="QLineEdit" name="allBox">
+            <property name="styleSheet">
+             <string>border: 2px solid gray</string>
+            </property>
             <property name="readOnly">
              <bool>true</bool>
             </property>
@@ -136,6 +139,9 @@
            </item>
            <item>
             <widget class="QLineEdit" name="missingBox">
+             <property name="styleSheet">
+              <string>border: 2px solid gray</string>
+             </property>
              <property name="readOnly">
               <bool>true</bool>
              </property>
@@ -212,6 +218,9 @@
            </item>
            <item>
             <widget class="QLineEdit" name="badBox">
+             <property name="styleSheet">
+              <string>border: 2px solid gray</string>
+             </property>
              <property name="readOnly">
               <bool>true</bool>
              </property>
@@ -241,7 +250,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="filePathBox"/>
+       <widget class="QLineEdit" name="filePathBox">
+        <property name="styleSheet">
+         <string>border: 2px solid gray</string>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QToolButton" name="browseButton">
