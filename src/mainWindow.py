@@ -5,8 +5,8 @@ Created on Jul 18, 2013
 '''
 from PyQt4 import uic
 from PyQt4.QtGui import *
-import secondaryUI as sui
 import logic.utilities as util
+import subprocess
 
 
 
@@ -142,7 +142,7 @@ class Window(form, base):
                                                                  int(last)+1)])
         diff = list(newFrames.difference(frames))
         if diff:
-            for line in util.frameNumToName(diff, fileName):
+            for line in sorted(util.frameNumToName(diff, fileName)):
                 self.missingFramesBox.appendPlainText(line)
             self.missingLabel.setText('Total: '+ str(len(diff)))
             mfiles = ''
@@ -152,7 +152,7 @@ class Window(form, base):
             self.missingBox.setText(mfiles)
         
     def openBadFile(self, path):
-        print path
+        subprocess.call(path, shell=True)
         
     def showFileDialog(self):
         '''
