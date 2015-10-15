@@ -5,19 +5,15 @@ Created on Jul 18, 2013
 '''
 from PyQt4 import uic
 from PyQt4.QtGui import *
-import logic.utilities as util
+import utilities as util
 import subprocess
+import cui
 
+rootPath = util.dirname(util.dirname(__file__))
+uiPath = util.join(rootPath, 'ui')
+iconPath = util.join(rootPath, 'icons')
 
-
-interfacePath = util.dirname(__file__)
-srcPath = util.dirname(interfacePath)
-frameCheckerPath = util.dirname(srcPath)
-
-
-uiFilePath = r'%s\ui\mainWindow.ui'%frameCheckerPath
-
-form, base = uic.loadUiType(uiFilePath)
+form, base = uic.loadUiType(util.join(uiPath, 'mainWindow.ui'))
 class Window(form, base):
     def __init__(self):
         '''
@@ -26,7 +22,7 @@ class Window(form, base):
         super(Window, self).__init__()
         self.setupUi(self)
         self.show()
-        icon = QIcon(r'%s\icons\mainIcon64x64.png'%frameCheckerPath)
+        icon = QIcon(util.join(iconPath, 'mainIcon64x64.png'))
         self.setWindowIcon(icon)
         self.setWindowTitle('frameChecker')
         # connections and mappings
@@ -54,11 +50,14 @@ class Window(form, base):
         if path:
             self.filePathBox.setText(path)
             self.setSourcePath()
+    
+    def showMessage(self, **kwargs):
+        return cui.showMessage(self, title='Frame Checker', **kwargs)
         
     def setSourcePath(self):
         path = str(self.filePathBox.text())
         if not util.pathExists(path):
-            sui.msgBox(self, msg = 'The system can not find the path specified',
+            self.showMessage(msg = 'The system can not find the path specified',
                        icon = QMessageBox.Warning)
             return
         if util.isfile(path):
@@ -74,7 +73,7 @@ class Window(form, base):
         '''
         self.files[:] = util.files(self.sourcePath)
         if not self.files:
-            sui.msgBox(self, msg = 'No file found in the specified path',
+            self.showMessage(msg = 'No file found in the specified path',
                        icon = QMessageBox.Warning)
             return
         sizes = [util.size(util.join(self.sourcePath,
@@ -111,8 +110,9 @@ class Window(form, base):
         self.allLabel.setText('Total: '+ str(len(self.files)))
         firstFrame = util.frameNumber(self.files[0])
         lastFrame = util.frameNumber(self.files[-1])
+        print self.files[0], self.files[-1], firstFrame, lastFrame
         if not firstFrame or not lastFrame:
-            sui.msgBox(self, msg='Frame numbers do not exist in all the files',
+            self.showMessage(msg='Frame numbers do not exist in all the files',
                        icon = QMessageBox.Warning)
             return
         self.allBox.setText( firstFrame+' - '+ lastFrame)
@@ -136,7 +136,6 @@ class Window(form, base):
             return
         fileName = self.files[0]
         frames = set([util.frameNumber(fName) for fName in self.files])
-        
         frameNoLen = len(list(frames)[0])
         newFrames = set([str(x).zfill(frameNoLen) for x in range(int(first),
                                                                  int(last)+1)])

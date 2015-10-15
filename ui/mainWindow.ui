@@ -186,6 +186,9 @@
              </property>
              <item>
               <widget class="QLabel" name="badFramesLabel">
+               <property name="styleSheet">
+                <string notr="true">color: lightGreen;</string>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -273,7 +276,7 @@
      <x>0</x>
      <y>0</y>
      <width>507</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

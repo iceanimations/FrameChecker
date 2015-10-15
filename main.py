@@ -3,9 +3,10 @@ Created on Jul 18, 2013
 
 @author: qurban.ali
 '''
-from PyQt4.QtGui import QApplication, QStyleFactory
-import src.mainWindow as mW
 import sys
+sys.path.append('R:/Pipe_Repo/Users/Qurban/utilities')
+from PyQt4.QtGui import QApplication, QStyleFactory
+import src.mainWindow as mw
 
 if __name__ == '__main__':
     app = QApplication([sys.argv[0]])

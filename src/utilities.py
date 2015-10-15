@@ -3,8 +3,6 @@ Created on Jul 18, 2013
 
 @author: qurban.ali
 '''
-import site
-site.addsitedir(r'R:\Python_Scripts')
 import os
 import os.path as osp
 import math
@@ -37,9 +35,10 @@ def frameNumber(fileName):
     '''
     returns the frame number from the file name
     '''
-    regExp = QRegExp('(\\d+)(\.)')
-    if regExp.indexIn(fileName) > -1:
-        return str(list(regExp.capturedTexts())[1])
+    try:
+        return fileName.split('.')[1]
+    except IndexError:
+        pass
 
 def chopStr(st, n):
     '''
