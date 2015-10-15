@@ -104,13 +104,12 @@ class Window(form, base):
             path = path.replace('\\', '/')
             if size < self.lowerBound:
                 badFiles.append(fil)
-                badLabelText += "<a href ='"+path+"'>"+ fil +"</a><br>"
+                badLabelText += "<a href ='"+path+"' style='color: lightGreen'>"+ fil +"</a><br>"
             self.allFramesBox.appendPlainText(fil)
         self.badFramesLabel.setText(badLabelText)
         self.allLabel.setText('Total: '+ str(len(self.files)))
         firstFrame = util.frameNumber(self.files[0])
         lastFrame = util.frameNumber(self.files[-1])
-        print self.files[0], self.files[-1], firstFrame, lastFrame
         if not firstFrame or not lastFrame:
             self.showMessage(msg='Frame numbers do not exist in all the files',
                        icon = QMessageBox.Warning)
