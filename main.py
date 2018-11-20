@@ -5,6 +5,7 @@ Created on Jul 18, 2013
 '''
 import sys
 sys.path.append('R:/Python_Scripts/plugins/utilities')
+sys.path.append('R:/Python_Scripts/plugins')
 from PyQt4.QtGui import QApplication, QStyleFactory
 import src.mainWindow as mw
 
