@@ -4,7 +4,7 @@ Created on Jul 18, 2013
 @author: qurban.ali
 '''
 import sys
-sys.path.append('R:/Pipe_Repo/Users/Qurban/utilities')
+sys.path.append('R:/Python_Scripts/plugins/utilities')
 from PyQt4.QtGui import QApplication, QStyleFactory
 import src.mainWindow as mw
 
